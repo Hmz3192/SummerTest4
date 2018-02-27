@@ -12,4 +12,6 @@ public interface CollectService {
     int insertColle(Collect collect);
 
     List<Collect> selectColl(int uid);
+
+
 }

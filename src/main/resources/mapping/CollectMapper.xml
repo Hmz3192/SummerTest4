@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.hmz.ssm.model.Collect" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="Uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="Col_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="col_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, Uid, Col_id
+    id, uid, col_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,10 +28,17 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hmz.ssm.model.Collect" >
-    insert into collect (id, Uid, Col_id
+    insert into collect (id, uid, col_id
       )
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{colId,jdbcType=INTEGER}
       )
+  </insert>
+  <insert id="insertColle" parameterType="com.hmz.ssm.model.Collect">
+    insert into collect (Uid, Col_id
+    )
+    values (#{uid,jdbcType=INTEGER}, #{colId,jdbcType=INTEGER}
+    )
+
   </insert>
   <insert id="insertSelective" parameterType="com.hmz.ssm.model.Collect" >
     insert into collect
@@ -40,10 +47,10 @@
         id,
       </if>
       <if test="uid != null" >
-        Uid,
+        uid,
       </if>
       <if test="colId != null" >
-        Col_id,
+        col_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -58,29 +65,22 @@
       </if>
     </trim>
   </insert>
-    <insert id="insertColle" parameterType="com.hmz.ssm.model.Collect">
-       insert into collect (Uid, Col_id
-      )
-    values (#{uid,jdbcType=INTEGER}, #{colId,jdbcType=INTEGER}
-      )
-
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.hmz.ssm.model.Collect" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmz.ssm.model.Collect" >
     update collect
     <set >
       <if test="uid != null" >
-        Uid = #{uid,jdbcType=INTEGER},
+        uid = #{uid,jdbcType=INTEGER},
       </if>
       <if test="colId != null" >
-        Col_id = #{colId,jdbcType=INTEGER},
+        col_id = #{colId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hmz.ssm.model.Collect" >
     update collect
-    set Uid = #{uid,jdbcType=INTEGER},
-      Col_id = #{colId,jdbcType=INTEGER}
+    set uid = #{uid,jdbcType=INTEGER},
+      col_id = #{colId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

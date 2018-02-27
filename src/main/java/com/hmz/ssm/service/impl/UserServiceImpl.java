@@ -21,11 +21,12 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectUser(username);
     }
 
+
     public User selectUserMes(String username) {
         return userMapper.selecustUserMes(username);
     }
 
     public int insertUser(User user) {
-        return userMapper.insertUser(user);
+        return userMapper.insert(user);
     }
 }

@@ -17,6 +17,20 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectUser"  resultType="java.lang.Boolean">
+    SELECT
+    *
+    FROM
+    user
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selecustUserMes" resultType="com.hmz.ssm.model.User">
+    SELECT
+    *
+    FROM
+    user
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
@@ -26,6 +40,13 @@
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
+  </insert>
+  <insert id="insertUser" parameterType="com.hmz.ssm.model.User">
+    insert into user (username, password
+    )
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    )
+
   </insert>
   <insert id="insertSelective" parameterType="com.hmz.ssm.model.User" >
     insert into user
@@ -52,14 +73,7 @@
       </if>
     </trim>
   </insert>
-    <insert id="insertUser" parameterType="com.hmz.ssm.model.User">
-       insert into user (username, password
-      )
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
-
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.hmz.ssm.model.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hmz.ssm.model.User" >
     update user
     <set >
       <if test="username != null" >
@@ -77,18 +91,4 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectUser"  resultType="java.lang.Boolean">
-    SELECT
-    *
-    FROM
-    user
-    WHERE username = #{username,jdbcType=VARCHAR}
-  </select>
-  <select id="selecustUserMes" resultType="com.hmz.ssm.model.User">
-    SELECT
-    *
-    FROM
-    user
-    WHERE username = #{username,jdbcType=VARCHAR}
-  </select>
 </mapper>

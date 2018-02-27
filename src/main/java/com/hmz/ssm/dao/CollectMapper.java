@@ -16,8 +16,7 @@ public interface CollectMapper {
     int updateByPrimaryKeySelective(Collect record);
 
     int updateByPrimaryKey(Collect record);
+    List<Collect> selectColle(int uid);
 
     int insertColle(Collect collect);
-
-    List<Collect> selectColle(int uid);
 }
